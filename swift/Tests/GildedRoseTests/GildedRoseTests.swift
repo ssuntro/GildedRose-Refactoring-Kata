@@ -4,8 +4,7 @@ import XCTest
 class GildedRoseTests: XCTestCase {
 
     func testQualityNoMinus_whenNormalItem_SingleDayPassedBy() {
-        let items = [Item(name: "foo", sellIn: 0, quality: 0)]
-        let store = GildedRose(items: items)
+        let store = GildedRose(items: [Item(name: "foo", sellIn: 0, quality: 0)])
         
         store.updateQuality()
         
@@ -29,19 +28,17 @@ class GildedRoseTests: XCTestCase {
     }
 
     func testTwoDayPassedBy() {
-        let items = [
-            Item(name: "+5 Dexterity Vest", sellIn: 10, quality: 20),
-            Item(name: "Aged Brie", sellIn: 2, quality: 0),
-            Item(name: "Elixir of the Mongoose", sellIn: 5, quality: 7),
-            Item(name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80),
-            Item(name: "Sulfuras, Hand of Ragnaros", sellIn: -1, quality: 80),
-            Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 15, quality: 20),
-            Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10, quality: 49),
-            Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 49),
-            // this conjured item does not work properly yet
-            Item(name: "Conjured Mana Cake", sellIn: 3, quality: 6)]
-
-        let store = GildedRose(items: items)
+        let store = GildedRose(items: [
+        Item(name: "+5 Dexterity Vest", sellIn: 10, quality: 20),
+        Item(name: "Aged Brie", sellIn: 2, quality: 0),
+        Item(name: "Elixir of the Mongoose", sellIn: 5, quality: 7),
+        Item(name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80),
+        Item(name: "Sulfuras, Hand of Ragnaros", sellIn: -1, quality: 80),
+        Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 15, quality: 20),
+        Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10, quality: 49),
+        Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 49),
+        // this conjured item does not work properly yet
+        Item(name: "Conjured Mana Cake", sellIn: 3, quality: 6)])
         
         store.updateQuality()
         store.updateQuality()
