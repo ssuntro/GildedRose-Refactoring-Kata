@@ -17,4 +17,39 @@ extension Item {
     func setZeroQuality() {
         quality = 0
     }
+    
+    func updateQualityForBackstagePasses() {
+        quality = calculateQualityForBackstagePasses
+    }
+    
+    private var calculateQualityForBackstagePasses: Int {
+        if name != ItemName.backstagePasses.rawValue { return quality }
+        if quality >= 50 { return quality }
+        
+        if sellIn < 6 {
+            return quality + 2
+        } else if sellIn < 11 {
+            return quality + 1
+        } else {
+            return quality
+        }
+    }
+    
+    
+    
+    func updateQualityBeforeSellIn() {
+        switch name {
+        case ItemName.backstagePasses.rawValue,
+             ItemName.agedBrie.rawValue:
+            if quality >= 50 { return }
+            quality =  quality + 1
+            updateQualityForBackstagePasses()
+        case ItemName.agedBrie.rawValue:
+            return
+        default:
+            if ItemName.isNormalItem(name) {
+                decreaseQuality()
+            }
+        }
+    }
 }
