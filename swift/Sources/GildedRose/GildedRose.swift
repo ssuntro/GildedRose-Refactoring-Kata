@@ -31,6 +31,14 @@ public class GildedRose {
     private func reduceQualityByOne(_ quality: Int) -> Int {
         return quality > 0 ? quality - 1: quality
     }
+    
+    private func updateTotalSellIn() {
+        for item in items {
+            if item.name != ItemName.sulfuras.rawValue {
+                 item.sellIn =  item.sellIn - 1
+            }
+        }
+    }
     public func updateQuality() {
         
         for item in items {
@@ -49,11 +57,7 @@ public class GildedRose {
             }
         }
         
-        for item in items {
-            if item.name != ItemName.sulfuras.rawValue {
-                 item.sellIn =  item.sellIn - 1
-            }
-        }
+        updateTotalSellIn()
         
         for item in items {
             if item.sellIn < 0 {
