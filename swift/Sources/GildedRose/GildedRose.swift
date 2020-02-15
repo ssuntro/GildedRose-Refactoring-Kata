@@ -20,10 +20,8 @@ public class GildedRose {
         for item in items {
             if item.name == ItemName.agedBrie.rawValue ||
                 item.name == ItemName.backstagePasses.rawValue {
-                //agebrie, backstagePasses
                 if item.quality < 50 {
-                     item.quality =  item.quality + 1
-                    
+                    item.quality =  item.quality + 1
                     if item.name == ItemName.backstagePasses.rawValue {
                         if item.sellIn < 11 {
                             if item.quality < 50 {
@@ -38,13 +36,9 @@ public class GildedRose {
                         }
                     }
                 }
-            } else {
-                //sulfare, normal item
-                
-                if ItemName.isNormalItem(item.name) {
-                    if item.quality > 0 {
-                        item.quality =  item.quality - 1
-                    }
+            } else if ItemName.isNormalItem(item.name) {
+                if item.quality > 0 {
+                    item.quality =  item.quality - 1
                 }
             }
         }
