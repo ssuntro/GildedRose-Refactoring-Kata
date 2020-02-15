@@ -21,20 +21,18 @@ public class GildedRose {
             switch item.name {
             case ItemName.agedBrie.rawValue,
                  ItemName.backstagePasses.rawValue:
-                if item.quality < 50 {
-                    item.quality =  item.quality + 1
-                    if item.name == ItemName.backstagePasses.rawValue {
-                        if item.sellIn < 11 {
-                            if item.quality < 50 {
-                                 item.quality =  item.quality + 1
-                            }
-                        }
-                        
-                        if item.sellIn < 6 {
-                            if item.quality < 50 {
-                                 item.quality =  item.quality + 1
-                            }
-                        }
+                if item.quality >= 50 { continue }
+                item.quality =  item.quality + 1
+                if item.name == ItemName.agedBrie.rawValue { continue }
+                
+                if item.sellIn < 11 {
+                    if item.quality < 50 {
+                         item.quality =  item.quality + 1
+                    }
+                }
+                if item.sellIn < 6 {
+                    if item.quality < 50 {
+                         item.quality =  item.quality + 1
                     }
                 }
             case ItemName.agedBrie.rawValue:
