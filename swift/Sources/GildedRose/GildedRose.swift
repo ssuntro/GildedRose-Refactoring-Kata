@@ -12,6 +12,7 @@ public class GildedRose {
     }
     
     public func updateQuality() {
+        
         for item in items {
             if  item.name != ItemName.agedBrie.rawValue &&
                 item.name != ItemName.backstagePasses.rawValue {
@@ -39,11 +40,15 @@ public class GildedRose {
                     }
                 }
             }
-            
+        }
+        
+        for item in items {
             if item.name != ItemName.sulfuras.rawValue {
                  item.sellIn =  item.sellIn - 1
             }
-            
+        }
+        
+        for item in items {
             if item.sellIn < 0 {
                 if item.name != ItemName.agedBrie.rawValue {
                     if item.name != ItemName.backstagePasses.rawValue {
