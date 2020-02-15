@@ -292,3 +292,12 @@ extension GildedRoseTests {
         """)
     }
 }
+
+//MARK: - Test Utilities
+extension GildedRose {
+    public var desciption: String {
+        return items.reduce("") { (result, item) -> String in
+            return result + item.description + "\n"
+        }
+    }
+}

@@ -41,8 +41,8 @@ public class GildedRose {
             }
         }
     }
-    public func updateQuality() {
-        
+    
+    private func updateQualityBeforeSellIn() {
         for item in items {
             switch item.name {
             case ItemName.backstagePasses.rawValue,
@@ -58,9 +58,13 @@ public class GildedRose {
                 }
             }
         }
-        
+    }
+    public func updateQuality() {
+        updateQualityBeforeSellIn()
         updateTotalSellIn()
-        
+        updateQualityAfterSellIn()
+    }
+    private func updateQualityAfterSellIn() {
         for item in items {
             if item.sellIn >= 0 { continue }
             
@@ -74,11 +78,6 @@ public class GildedRose {
                     item.decreaseQuality()
                 }
             }
-        }
-    }
-    public var desciption: String {
-        return items.reduce("") { (result, item) -> String in
-            return result + item.description + "\n"
         }
     }
 }
