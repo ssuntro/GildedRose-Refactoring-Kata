@@ -63,12 +63,16 @@ public class GildedRose {
         
         for item in items {
             if item.sellIn >= 0 { continue }
-            if item.name == ItemName.backstagePasses.rawValue {
-                item.quality =  item.quality -  item.quality
-            } else if item.name == ItemName.agedBrie.rawValue {
+            
+            switch item.name {
+            case ItemName.backstagePasses.rawValue:
+                item.setZeroQuality()
+            case ItemName.agedBrie.rawValue:
                 item.increaseQuality()
-            } else if ItemName.isNormalItem(item.name) {
-                item.decreaseQuality()
+            default:
+                if ItemName.isNormalItem(item.name) {
+                    item.decreaseQuality()
+                }
             }
         }
     }

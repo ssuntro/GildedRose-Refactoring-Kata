@@ -13,4 +13,8 @@ extension Item {
     func decreaseQuality() {
         quality = (quality > 0 ? quality - 1: quality)
     }
+    
+    func setZeroQuality() {
+        quality = 0
+    }
 }
