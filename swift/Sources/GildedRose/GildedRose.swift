@@ -25,6 +25,10 @@ public class GildedRose {
             return item.quality
         }
     }
+    
+    private func reduceQualityByOne(_ quality: Int) -> Int {
+        return quality - 1
+    }
     public func updateQuality() {
         
         for item in items {
@@ -42,7 +46,7 @@ public class GildedRose {
             default:
                 if ItemName.isNormalItem(item.name) {
                     if item.quality > 0 {
-                        item.quality =  item.quality - 1
+                        item.quality =  reduceQualityByOne(item.quality)
                     }
                 }
             }
