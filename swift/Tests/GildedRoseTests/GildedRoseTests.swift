@@ -3,13 +3,28 @@ import XCTest
 
 class GildedRoseTests: XCTestCase {
 
-    func testNormalItem_SingleDayPassedBy() {
+    func testQualityNoMinus_whenNormalItem_SingleDayPassedBy() {
         let items = [Item(name: "foo", sellIn: 0, quality: 0)]
         let store = GildedRose(items: items)
+        
         store.updateQuality()
+        
         XCTAssertEqual(store.desciption,
                        """
         foo, -1, 0\n
+        """)
+    }
+    
+    func testQualityMaxIs50_agedBrie() {
+        let items = [Item(name: "Aged Brie", sellIn: 0, quality: 50)]
+        let store = GildedRose(items: items)
+        
+        store.updateQuality()
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Aged Brie, -2, 50\n
         """)
     }
 
