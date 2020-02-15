@@ -3,6 +3,10 @@ public enum ItemName: String {
     case agedBrie = "Aged Brie"
     case backstagePasses = "Backstage passes to a TAFKAL80ETC concert"
     case sulfuras = "Sulfuras, Hand of Ragnaros"
+    
+    static func isNormalItem(_ name: String) -> Bool {
+        return ItemName(rawValue: name) == nil
+    }
 }
 public class GildedRose {
     let items: [Item]
@@ -16,9 +20,10 @@ public class GildedRose {
         for item in items {
             if  item.name != ItemName.agedBrie.rawValue &&
                 item.name != ItemName.backstagePasses.rawValue {
-                if item.quality > 0 {
-                    if item.name != ItemName.sulfuras.rawValue {
-                         item.quality =  item.quality - 1
+                
+                if ItemName.isNormalItem(item.name) {
+                    if item.quality > 0 {
+                        item.quality =  item.quality - 1
                     }
                 }
             } else {
