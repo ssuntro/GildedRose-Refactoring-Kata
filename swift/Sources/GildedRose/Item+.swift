@@ -35,8 +35,6 @@ extension Item {
         }
     }
     
-    
-    
     func updateQualityBeforeSellIn() {
         switch name {
         case ItemName.backstagePasses.rawValue,
@@ -46,6 +44,27 @@ extension Item {
             updateQualityForBackstagePasses()
         case ItemName.agedBrie.rawValue:
             return
+        default:
+            if ItemName.isNormalItem(name) {
+                decreaseQuality()
+            }
+        }
+    }
+    
+    func updateSellIn() {
+        if name != ItemName.sulfuras.rawValue {
+             sellIn =  sellIn - 1
+        }
+    }
+    
+    func updateQualityAfterSellIn() {
+        if sellIn >= 0 { return }
+        
+        switch name {
+        case ItemName.backstagePasses.rawValue:
+            setZeroQuality()
+        case ItemName.agedBrie.rawValue:
+            increaseQuality()
         default:
             if ItemName.isNormalItem(name) {
                 decreaseQuality()
