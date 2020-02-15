@@ -16,15 +16,12 @@ public class GildedRose {
     }
     
     private func increaseBackstagePassesQuality(with item: Item) {
+        if item.quality >= 50 { return }
         if item.sellIn < 11 {
-            if item.quality < 50 {
-                 item.quality =  item.quality + 1
-            }
+            item.quality =  item.quality + 1
         }
         if item.sellIn < 6 {
-            if item.quality < 50 {
-                 item.quality =  item.quality + 1
-            }
+            item.quality =  item.quality + 1
         }
     }
     public func updateQuality() {
