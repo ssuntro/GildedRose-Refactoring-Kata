@@ -15,6 +15,18 @@ public class GildedRose {
         self.items = items
     }
     
+    private func increaseBackstagePassesQuality(with item: Item) {
+        if item.sellIn < 11 {
+            if item.quality < 50 {
+                 item.quality =  item.quality + 1
+            }
+        }
+        if item.sellIn < 6 {
+            if item.quality < 50 {
+                 item.quality =  item.quality + 1
+            }
+        }
+    }
     public func updateQuality() {
         
         for item in items {
@@ -24,17 +36,8 @@ public class GildedRose {
                 if item.quality >= 50 { continue }
                 item.quality =  item.quality + 1
                 if item.name == ItemName.agedBrie.rawValue { continue }
+                increaseBackstagePassesQuality(with: item)
                 
-                if item.sellIn < 11 {
-                    if item.quality < 50 {
-                         item.quality =  item.quality + 1
-                    }
-                }
-                if item.sellIn < 6 {
-                    if item.quality < 50 {
-                         item.quality =  item.quality + 1
-                    }
-                }
             case ItemName.agedBrie.rawValue:
                 continue
             default:
