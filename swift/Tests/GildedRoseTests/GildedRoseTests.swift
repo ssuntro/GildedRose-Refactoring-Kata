@@ -2,34 +2,8 @@
 import XCTest
 
 class GildedRoseTests: XCTestCase {
-    func testQualityMinimumIs0_whenNormalItem() {
-        let store = GildedRose(items: [Item(name: "foo", sellIn: 0, quality: 0)])
-        
-        store.updateQuality()
-        store.updateQuality()
-        
-        XCTAssertEqual(store.desciption,
-                       """
-        foo, -2, 0\n
-        """)
-    }
-    
-    func testAgedBrieIncreaseQulity_whenDayPassedBy() {}
     
     
-    
-    func testQualityMaxIs50_agedBrie() {
-        let items = [Item(name: "Aged Brie", sellIn: 0, quality: 50)]
-        let store = GildedRose(items: items)
-        
-        store.updateQuality()
-        store.updateQuality()
-        
-        XCTAssertEqual(store.desciption,
-                       """
-        Aged Brie, -2, 50\n
-        """)
-    }
 
     func testTwoDayPassedBy() {
         let store = GildedRose(items: [
@@ -70,6 +44,18 @@ class GildedRoseTests: XCTestCase {
 
 //MARK: - NormalProduct
 extension GildedRoseTests {
+    func testNormalProduct_qualityMinimumIs0_whenQualityAlready0() {
+        let store = GildedRose(items: [Item(name: "foo", sellIn: 0, quality: 0)])
+        
+        store.updateQuality()
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        foo, -2, 0\n
+        """)
+    }
+    
     func testNormalProduct_decreaseSellIn() {
         let store = GildedRose(items: [Item(name: "foo", sellIn: 2, quality: 0)])
         
@@ -113,6 +99,109 @@ extension GildedRoseTests {
         XCTAssertEqual(store.desciption,
                        """
         foo, -7, 6\n
+        """)
+    }
+}
+
+//MARK: - AgedBrie
+extension GildedRoseTests {
+    func testAgedBrie_increaseQulity_whenDayPassedBy_15() {
+        let store = GildedRose(items: [Item(name: "Aged Brie", sellIn: 15, quality: 0)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Aged Brie, 14, 1\n
+        """)
+    }
+    
+    func testAgedBrie_increaseQulity_whenDayPassedBy_10() {
+        let store = GildedRose(items: [Item(name: "Aged Brie", sellIn: 10, quality: 0)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Aged Brie, 9, 1\n
+        """)
+    }
+    
+    func testAgedBrie_increaseQulity_whenDayPassedBy_9() {
+        let store = GildedRose(items: [Item(name: "Aged Brie", sellIn: 9, quality: 0)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Aged Brie, 8, 1\n
+        """)
+    }
+    
+    func testAgedBrie_increaseQulity_whenDayPassedBy_5() {
+        let store = GildedRose(items: [Item(name: "Aged Brie", sellIn: 5, quality: 0)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Aged Brie, 4, 1\n
+        """)
+    }
+    
+    func testAgedBrie_increaseQulity_whenDayPassedBy_4() {
+        let store = GildedRose(items: [Item(name: "Aged Brie", sellIn: 4, quality: 0)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Aged Brie, 3, 1\n
+        """)
+    }
+    
+    func testAgedBrie_increaseQulity_whenDayPassedBy_0() {
+        let store = GildedRose(items: [Item(name: "Aged Brie", sellIn: 0, quality: 0)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Aged Brie, -1, 2\n
+        """)
+    }
+    
+    func testAgedBrie_increaseQulity_whenDayPassedBy_Minus5() {
+        let store = GildedRose(items: [Item(name: "Aged Brie", sellIn: -5, quality: 0)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Aged Brie, -6, 2\n
+        """)
+    }
+    
+    func testAgedBrie_qualityMaxIs50_whenQualityAlready50() {
+        let store = GildedRose(items: [Item(name: "Aged Brie", sellIn: 0, quality: 50)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Aged Brie, -1, 50\n
+        """)
+    }
+    
+    func testAgedBrie_multiDayPassedBy() {
+        let store = GildedRose(items: [Item(name: "Aged Brie", sellIn: 0, quality: 50)])
+        
+        store.updateQuality()
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Aged Brie, -2, 50\n
         """)
     }
 }
