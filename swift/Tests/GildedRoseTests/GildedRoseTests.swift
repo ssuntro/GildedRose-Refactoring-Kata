@@ -2,54 +2,6 @@
 import XCTest
 
 class GildedRoseTests: XCTestCase {
-
-    func testNormalProduct_decreaseSellIn() {
-        let store = GildedRose(items: [Item(name: "foo", sellIn: 2, quality: 0)])
-        
-        store.updateQuality()
-        store.updateQuality()
-        
-        XCTAssertEqual(store.desciption,
-                       """
-        foo, 0, 0\n
-        """)
-    }
-    func testNormalProduct_decreaseQuality() {
-        let store = GildedRose(items: [Item(name: "foo", sellIn: 2, quality: 2)])
-        
-        store.updateQuality()
-        store.updateQuality()
-        
-        XCTAssertEqual(store.desciption,
-                       """
-        foo, 0, 0\n
-        """)
-    }
-    func testNormalProduct_decreaseQualityDouble_whenSellInIs0() {
-        let store = GildedRose(items: [Item(name: "foo", sellIn: 0, quality: 2)])
-        
-        store.updateQuality()
-        store.updateQuality()
-        
-        XCTAssertEqual(store.desciption,
-                       """
-        foo, -2, 0\n
-        """)
-        
-    }
-    func testNormalProduct_decreaseQualityDouble_whenSellInIsMinus() {
-        let store = GildedRose(items: [Item(name: "foo", sellIn: -5, quality: 10)])
-        
-        store.updateQuality()
-        store.updateQuality()
-        
-        XCTAssertEqual(store.desciption,
-                       """
-        foo, -7, 6\n
-        """)
-    }
-    
-    
     func testQualityMinimumIs0_whenNormalItem() {
         let store = GildedRose(items: [Item(name: "foo", sellIn: 0, quality: 0)])
         
@@ -114,4 +66,53 @@ class GildedRoseTests: XCTestCase {
 //            ("testFoo", testFoo),
 //        ]
 //    }
+}
+
+//MARK: - NormalProduct
+extension GildedRoseTests {
+    func testNormalProduct_decreaseSellIn() {
+        let store = GildedRose(items: [Item(name: "foo", sellIn: 2, quality: 0)])
+        
+        store.updateQuality()
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        foo, 0, 0\n
+        """)
+    }
+    func testNormalProduct_decreaseQuality() {
+        let store = GildedRose(items: [Item(name: "foo", sellIn: 2, quality: 2)])
+        
+        store.updateQuality()
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        foo, 0, 0\n
+        """)
+    }
+    func testNormalProduct_decreaseQualityDouble_whenSellInIs0() {
+        let store = GildedRose(items: [Item(name: "foo", sellIn: 0, quality: 2)])
+        
+        store.updateQuality()
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        foo, -2, 0\n
+        """)
+        
+    }
+    func testNormalProduct_decreaseQualityDouble_whenSellInIsMinus() {
+        let store = GildedRose(items: [Item(name: "foo", sellIn: -5, quality: 10)])
+        
+        store.updateQuality()
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        foo, -7, 6\n
+        """)
+    }
 }
