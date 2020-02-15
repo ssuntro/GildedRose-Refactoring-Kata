@@ -15,7 +15,7 @@ public class GildedRose {
         self.items = items
     }
     
-    private func getNewBackstagePassesQuality(with item: Item) -> Int {
+    private func getNewQualityForBackstagePasses(with item: Item) -> Int {
         if item.quality >= 50 { return item.quality }
         if item.sellIn < 6 {
             return item.quality + 2
@@ -29,12 +29,13 @@ public class GildedRose {
         
         for item in items {
             switch item.name {
-            case ItemName.agedBrie.rawValue,
-                 ItemName.backstagePasses.rawValue:
+            case ItemName.agedBrie.rawValue:
                 if item.quality >= 50 { continue }
                 item.quality =  item.quality + 1
-                if item.name == ItemName.agedBrie.rawValue { continue }
-                item.quality = getNewBackstagePassesQuality(with: item)
+            case ItemName.backstagePasses.rawValue:
+                if item.quality >= 50 { continue }
+                item.quality =  item.quality + 1
+                item.quality = getNewQualityForBackstagePasses(with: item)
                 
             case ItemName.agedBrie.rawValue:
                 continue
