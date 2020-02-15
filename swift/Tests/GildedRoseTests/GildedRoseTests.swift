@@ -3,14 +3,15 @@ import XCTest
 
 class GildedRoseTests: XCTestCase {
 
-    func testQualityNoMinus_whenNormalItem_SingleDayPassedBy() {
+    func testQualityNoMinus_whenNormalItem() {
         let store = GildedRose(items: [Item(name: "foo", sellIn: 0, quality: 0)])
         
+        store.updateQuality()
         store.updateQuality()
         
         XCTAssertEqual(store.desciption,
                        """
-        foo, -1, 0\n
+        foo, -2, 0\n
         """)
     }
     
