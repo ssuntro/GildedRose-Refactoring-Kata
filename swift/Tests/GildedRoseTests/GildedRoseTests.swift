@@ -3,8 +3,6 @@ import XCTest
 
 class GildedRoseTests: XCTestCase {
     
-    
-
     func testTwoDayPassedBy() {
         let store = GildedRose(items: [
         Item(name: "+5 Dexterity Vest", sellIn: 10, quality: 20),
@@ -202,6 +200,20 @@ extension GildedRoseTests {
         XCTAssertEqual(store.desciption,
                        """
         Aged Brie, -2, 50\n
+        """)
+    }
+}
+
+//MARK: - Sulfuras, Hand of Ragnaros
+extension GildedRoseTests {
+    func testSulfuras_noDecreaseQualityAndSellIn() {
+        let store = GildedRose(items: [Item(name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 40)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Sulfuras, Hand of Ragnaros, 0, 40\n
         """)
     }
 }
