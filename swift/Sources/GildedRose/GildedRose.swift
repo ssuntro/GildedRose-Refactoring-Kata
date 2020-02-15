@@ -60,21 +60,20 @@ public class GildedRose {
         updateTotalSellIn()
         
         for item in items {
-            if item.sellIn < 0 {
-                if item.name != ItemName.agedBrie.rawValue {
-                    if item.name != ItemName.backstagePasses.rawValue {
-                        if item.quality > 0 {
-                            if item.name != ItemName.sulfuras.rawValue {
-                                 item.quality =  item.quality - 1
-                            }
+            if item.sellIn >= 0 { continue }
+            if item.name != ItemName.agedBrie.rawValue {
+                if item.name != ItemName.backstagePasses.rawValue {
+                    if item.quality > 0 {
+                        if item.name != ItemName.sulfuras.rawValue {
+                             item.quality =  item.quality - 1
                         }
-                    } else {
-                         item.quality =  item.quality -  item.quality
                     }
                 } else {
-                    if item.quality < 50 {
-                         item.quality =  item.quality + 1
-                    }
+                     item.quality =  item.quality -  item.quality
+                }
+            } else {
+                if item.quality < 50 {
+                     item.quality =  item.quality + 1
                 }
             }
         }
