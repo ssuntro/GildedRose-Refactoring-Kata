@@ -1,7 +1,7 @@
 public class GildedRose {
-    var items:[Item]
+    var items: [Item]
     
-    public init(items:[Item]) {
+    public init(items: [Item]) {
         self.items = items
     }
     
@@ -55,5 +55,15 @@ public class GildedRose {
                 }
             }
         }
+    }
+    public var desciption: String {
+        return items.reduce("") { (result, item) -> String in
+            return result + item.description + "\n"
+        }
+//
+//        let numbers = [1, 2, 3, 4]
+//        let numberSum = numbers.reduce(0, { x, y in
+//            x + y
+//        })
     }
 }
