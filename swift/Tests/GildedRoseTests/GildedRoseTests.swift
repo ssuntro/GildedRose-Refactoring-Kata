@@ -217,3 +217,78 @@ extension GildedRoseTests {
         """)
     }
 }
+
+//MARK: - Backstage passes to a TAFKAL80ETC concert
+extension GildedRoseTests {
+    func testBackstagePasses_increaseQuality_whenSellInIs15() {
+        let store = GildedRose(items: [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 15, quality: 20)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Backstage passes to a TAFKAL80ETC concert, 14, 21\n
+        """)
+    }
+    
+    func testBackstagePasses_increaseQuality_whenSellInIs10() {
+        let store = GildedRose(items: [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10, quality: 20)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Backstage passes to a TAFKAL80ETC concert, 9, 22\n
+        """)
+    }
+    func testBackstagePasses_increaseQuality_whenSellInIs9() {
+        let store = GildedRose(items: [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 9, quality: 20)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Backstage passes to a TAFKAL80ETC concert, 8, 22\n
+        """)
+    }
+    func testBackstagePasses_increaseQuality_whenSellInIs5() {
+        let store = GildedRose(items: [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 20)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Backstage passes to a TAFKAL80ETC concert, 4, 23\n
+        """)
+    }
+    func testBackstagePasses_increaseQuality_whenSellInIs4() {
+        let store = GildedRose(items: [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 4, quality: 20)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Backstage passes to a TAFKAL80ETC concert, 3, 23\n
+        """)
+    }
+    func testBackstagePasses_increaseQuality_whenSellInIs0() {
+        let store = GildedRose(items: [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 0, quality: 20)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Backstage passes to a TAFKAL80ETC concert, -1, 0\n
+        """)
+    }
+    func testBackstagePasses_QualityIs0_whenSellInIsMinus5() {
+        let store = GildedRose(items: [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: -5, quality: 20)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Backstage passes to a TAFKAL80ETC concert, -6, 0\n
+        """)
+    }
+}
