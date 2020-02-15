@@ -30,16 +30,12 @@ public class GildedRose {
         }
     }
     
-    private func reduceQualityByOne(_ quality: Int) -> Int {
-        return quality > 0 ? quality - 1: quality
-    }
     
-    private func updateTotalSellIn() {
-        for item in items {
-            if item.name != ItemName.sulfuras.rawValue {
-                 item.sellIn =  item.sellIn - 1
-            }
-        }
+    
+    public func updateQuality() {
+        updateQualityBeforeSellIn()
+        updateTotalSellIn()
+        updateQualityAfterSellIn()
     }
     
     private func updateQualityBeforeSellIn() {
@@ -54,16 +50,20 @@ public class GildedRose {
                 continue
             default:
                 if ItemName.isNormalItem(item.name) {
-                    item.quality =  reduceQualityByOne(item.quality)
+                    item.decreaseQuality()
                 }
             }
         }
     }
-    public func updateQuality() {
-        updateQualityBeforeSellIn()
-        updateTotalSellIn()
-        updateQualityAfterSellIn()
+    
+    private func updateTotalSellIn() {
+        for item in items {
+            if item.name != ItemName.sulfuras.rawValue {
+                 item.sellIn =  item.sellIn - 1
+            }
+        }
     }
+    
     private func updateQualityAfterSellIn() {
         for item in items {
             if item.sellIn >= 0 { continue }
@@ -80,4 +80,6 @@ public class GildedRose {
             }
         }
     }
+    
+    
 }
