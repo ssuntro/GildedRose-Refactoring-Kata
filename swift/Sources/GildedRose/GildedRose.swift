@@ -15,13 +15,14 @@ public class GildedRose {
         self.items = items
     }
     
-    private func increaseBackstagePassesQuality(with item: Item) {
-        if item.quality >= 50 { return }
-        if item.sellIn < 11 {
-            item.quality =  item.quality + 1
-        }
+    private func getNewBackstagePassesQuality(with item: Item) -> Int {
+        if item.quality >= 50 { return item.quality }
         if item.sellIn < 6 {
-            item.quality =  item.quality + 1
+            return item.quality + 2
+        } else if item.sellIn < 11 {
+            return item.quality + 1
+        } else {
+            return item.quality
         }
     }
     public func updateQuality() {
@@ -33,7 +34,7 @@ public class GildedRose {
                 if item.quality >= 50 { continue }
                 item.quality =  item.quality + 1
                 if item.name == ItemName.agedBrie.rawValue { continue }
-                increaseBackstagePassesQuality(with: item)
+                item.quality = getNewBackstagePassesQuality(with: item)
                 
             case ItemName.agedBrie.rawValue:
                 continue
