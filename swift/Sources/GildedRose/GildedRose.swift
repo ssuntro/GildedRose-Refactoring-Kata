@@ -18,15 +18,9 @@ public class GildedRose {
     public func updateQuality() {
         
         for item in items {
-            if  item.name != ItemName.agedBrie.rawValue &&
-                item.name != ItemName.backstagePasses.rawValue {
-                
-                if ItemName.isNormalItem(item.name) {
-                    if item.quality > 0 {
-                        item.quality =  item.quality - 1
-                    }
-                }
-            } else {
+            if item.name == ItemName.agedBrie.rawValue ||
+                item.name == ItemName.backstagePasses.rawValue {
+                //agebrie, backstagePasses
                 if item.quality < 50 {
                      item.quality =  item.quality + 1
                     
@@ -42,6 +36,14 @@ public class GildedRose {
                                  item.quality =  item.quality + 1
                             }
                         }
+                    }
+                }
+            } else {
+                //sulfare, normal item
+                
+                if ItemName.isNormalItem(item.name) {
+                    if item.quality > 0 {
+                        item.quality =  item.quality - 1
                     }
                 }
             }
