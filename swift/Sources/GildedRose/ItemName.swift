@@ -10,6 +10,16 @@ protocol SubItemBehavior {
     var getNewQualityPreSellIn: (_ item: Item) -> Int { set get }
 }
 
+struct NormalItem: SubItemBehavior {
+    var getNewQualityPreSellIn: (Item) -> Int = { item in
+        return item.quality > 0 ? item.quality - 1: item.quality
+    }
+}
+struct Sulfuras: SubItemBehavior {
+    var getNewQualityPreSellIn: (Item) -> Int = { item in
+        return item.quality
+    }
+}
 struct BackstagePasses: SubItemBehavior {
     var getNewQualityPreSellIn: (Item) -> Int = { item in
         if item.quality >= 50 { return item.quality }

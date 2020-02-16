@@ -27,9 +27,9 @@ extension Item {
         case .backstagePasses:
             quality = BackstagePasses().getNewQualityPreSellIn(self)
         case .sulfuras:
-            return
+            quality = Sulfuras().getNewQualityPreSellIn(self)
         case .normal:
-            decreaseQuality()
+            quality =  NormalItem().getNewQualityPreSellIn(self)
         }
     }
     
