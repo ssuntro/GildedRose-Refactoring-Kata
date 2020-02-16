@@ -6,22 +6,14 @@
 //
 
 extension Item {
-//    func increaseQuality() {
-//        quality = (quality < 50 ? quality + 1: quality)
-//    }
-//    
-//    func decreaseQuality() {
-//        quality = (quality > 0 ? quality - 1: quality)
-//    }
-    
     func updateQualityBeforeSellIn() {
         quality = ItemName.init(rawValue: name).item.getNewQualityPreSellIn(self)
     }
     
     func updateSellIn() {
-        if ItemName.init(rawValue: name) != ItemName.sulfuras {
-             sellIn =  sellIn - 1
-        }
+        if ItemName.init(rawValue: name) == ItemName.sulfuras { return }
+        
+        sellIn =  sellIn - 1
     }
     
     func updateQualityAfterSellIn() {
