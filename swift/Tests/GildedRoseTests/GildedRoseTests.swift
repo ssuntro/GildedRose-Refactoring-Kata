@@ -1,6 +1,42 @@
 @testable import GildedRose
 import XCTest
 
+//MARK: - Conjured Mana Cake
+extension GildedRoseTests {
+    func testConjured_MinimumQualityIs0() {
+        let store = GildedRose(items: [Item(name: "Conjured Mana Cake", sellIn: 0, quality: 2)])
+        
+        store.updateQuality()
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Conjured Mana Cake, -2, 0\n
+        """)
+    }
+    func testConjured_qualityDecreaseShouldBeDouble() {
+        let store = GildedRose(items: [Item(name: "Conjured Mana Cake", sellIn: 2, quality: 10)])
+        
+        store.updateQuality()
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Conjured Mana Cake, 0, 6\n
+        """)
+    }
+    func testConjured_qualityDecreaseShouldBeQuadruple_whenSellInIsZero() {
+        let store = GildedRose(items: [Item(name: "Conjured Mana Cake", sellIn: 0, quality: 10)])
+        
+        store.updateQuality()
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        Conjured Mana Cake, -2, 2\n
+        """)
+    }
+}
 class GildedRoseTests: XCTestCase {
     
     func testTwoDayPassedBy() {
@@ -29,7 +65,7 @@ class GildedRoseTests: XCTestCase {
                        Backstage passes to a TAFKAL80ETC concert, 13, 22
                        Backstage passes to a TAFKAL80ETC concert, 8, 50
                        Backstage passes to a TAFKAL80ETC concert, 3, 50
-                       Conjured Mana Cake, 1, 4\n
+                       Conjured Mana Cake, 1, 2\n
                        """)
     }
     
@@ -97,6 +133,17 @@ extension GildedRoseTests {
         XCTAssertEqual(store.desciption,
                        """
         foo, -7, 6\n
+        """)
+    }
+    
+    func testNormalProduct_decreaseQualityDouble_whenSellInIsZero() {
+        let store = GildedRose(items: [Item(name: "foo", sellIn: 0, quality: 10)])
+        
+        store.updateQuality()
+        
+        XCTAssertEqual(store.desciption,
+                       """
+        foo, -1, 8\n
         """)
     }
 }

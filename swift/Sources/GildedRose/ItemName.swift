@@ -10,12 +10,14 @@ public enum ItemName: String {
     case backstagePasses
     case sulfuras
     case normal
+    case conjured
     
     public init(rawValue: String) {
         switch rawValue {
         case "Aged Brie": self = .agedBrie
         case "Backstage passes to a TAFKAL80ETC concert": self = .backstagePasses
         case "Sulfuras, Hand of Ragnaros": self = .sulfuras
+        case "Conjured Mana Cake": self = .conjured
         default: self = .normal
         }
     }
@@ -30,6 +32,8 @@ public enum ItemName: String {
             return Sulfuras()
         case .normal:
             return NormalItem()
+        case .conjured:
+            return Conjured()
         }
     }
 }
