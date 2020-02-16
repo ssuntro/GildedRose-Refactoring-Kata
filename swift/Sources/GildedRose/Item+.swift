@@ -6,19 +6,13 @@
 //
 
 extension Item {
-    func increaseQuality() {
-        quality = (quality < 50 ? quality + 1: quality)
-    }
-    
-    func decreaseQuality() {
-        quality = (quality > 0 ? quality - 1: quality)
-    }
-    
-    func setZeroQuality() {
-        quality = 0
-    }
-    
-    
+//    func increaseQuality() {
+//        quality = (quality < 50 ? quality + 1: quality)
+//    }
+//    
+//    func decreaseQuality() {
+//        quality = (quality > 0 ? quality - 1: quality)
+//    }
     
     func updateQualityBeforeSellIn() {
         quality = ItemName.init(rawValue: name).item.getNewQualityPreSellIn(self)
@@ -33,15 +27,6 @@ extension Item {
     func updateQualityAfterSellIn() {
         if sellIn >= 0 { return }
         
-        switch ItemName.init(rawValue: name) {
-        case .backstagePasses:
-            setZeroQuality()
-        case .agedBrie:
-            increaseQuality()
-        case .sulfuras:
-            return
-        case .normal:
-            decreaseQuality()
-        }
+        quality = ItemName.init(rawValue: name).item.getNewQualityPostSellIn(quality)
     }
 }
