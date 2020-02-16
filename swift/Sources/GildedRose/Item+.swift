@@ -42,7 +42,7 @@ extension Item {
             if quality >= 50 { return }
             quality =  quality + 1
             updateQualityForBackstagePasses()
-        case ItemName.agedBrie.rawValue:
+        case ItemName.sulfuras.rawValue:
             return
         default:
             if ItemName.isNormalItem(name) {
