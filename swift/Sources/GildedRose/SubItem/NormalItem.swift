@@ -10,23 +10,25 @@ protocol SubItemBehavior {
     var getNewQualityPostSellIn: (_ quality: Int) -> Int { set get }
 }
 
-struct NormalItem: SubItemBehavior {
-    var getNewQualityPreSellIn: (Item) -> Int = { item in
-        return item.quality > 0 ? item.quality - 1: item.quality
+class NormalItem: SubItemBehavior {
+    var decreaseRate: Int {
+        return 1
     }
     
-    var getNewQualityPostSellIn: (Int) -> Int = { quality in
-        return quality > 0 ? quality - 1: quality
+    lazy var getNewQualityPreSellIn: (Item) -> Int = { [weak self] item in
+        guard  let self = self else { return item.quality }
+        return item.quality > 0 ? item.quality - self.decreaseRate: item.quality
+    }
+    
+    lazy var getNewQualityPostSellIn: (Int) -> Int = { [weak self] quality in
+        guard  let self = self else { return quality }
+        return quality > 0 ? quality - self.decreaseRate: quality
     }
 }
 
 
-struct Conjured: SubItemBehavior {
-    var getNewQualityPreSellIn: (Item) -> Int = { item in
-        return item.quality > 0 ? item.quality - 2: item.quality
-    }
-    
-    var getNewQualityPostSellIn: (Int) -> Int = { quality in
-        return quality > 0 ? quality - 2: quality
+class Conjured: NormalItem {
+    override var decreaseRate: Int {
+        return 2
     }
 }
