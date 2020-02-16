@@ -21,16 +21,7 @@ extension Item {
     
     
     func updateQualityBeforeSellIn() {
-        switch ItemName.init(rawValue: name) {
-        case .agedBrie:
-            quality = AgedBrie().getNewQualityPreSellIn(self)
-        case .backstagePasses:
-            quality = BackstagePasses().getNewQualityPreSellIn(self)
-        case .sulfuras:
-            quality = Sulfuras().getNewQualityPreSellIn(self)
-        case .normal:
-            quality =  NormalItem().getNewQualityPreSellIn(self)
-        }
+        quality = ItemName.init(rawValue: name).item.getNewQualityPreSellIn(self)
     }
     
     func updateSellIn() {

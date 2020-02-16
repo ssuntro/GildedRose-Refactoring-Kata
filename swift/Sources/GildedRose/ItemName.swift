@@ -56,7 +56,16 @@ public enum ItemName: String {
         }
     }
     
-//    var subItem: SubItemBehavior {
-//        
-//    }
+    var item: SubItemBehavior {
+        switch self {
+        case .agedBrie:
+            return AgedBrie()
+        case .backstagePasses:
+            return BackstagePasses()
+        case .sulfuras:
+            return Sulfuras()
+        case .normal:
+            return NormalItem()
+        }
+    }
 }
