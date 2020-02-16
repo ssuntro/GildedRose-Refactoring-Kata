@@ -25,10 +25,3 @@ class NormalItem: SubItemBehavior {
         return quality > 0 ? quality - self.decreaseRate: quality
     }
 }
-
-
-class Conjured: NormalItem {
-    override var decreaseRate: Int {
-        return 2
-    }
-}
