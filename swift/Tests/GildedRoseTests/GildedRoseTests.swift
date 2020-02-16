@@ -291,6 +291,14 @@ extension GildedRoseTests {
         Backstage passes to a TAFKAL80ETC concert, -6, 0\n
         """)
     }
+    
+    func testEnum() {
+        XCTAssertEqual(ItemName.init(rawValue: "Aged Brie"), ItemName.agedBrie)
+        XCTAssertEqual(ItemName.init(rawValue: "Backstage passes to a TAFKAL80ETC concert"), ItemName.backstagePasses)
+        XCTAssertEqual(ItemName.init(rawValue: "Sulfuras, Hand of Ragnaros"), ItemName.sulfuras)
+        XCTAssertEqual(ItemName.init(rawValue: "ann ja"), ItemName.normal)
+        
+    }
 }
 
 //MARK: - Test Utilities
