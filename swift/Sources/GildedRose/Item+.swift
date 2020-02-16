@@ -18,30 +18,14 @@ extension Item {
         quality = 0
     }
     
-    func updateQualityForBackstagePasses() {
-        quality = calculateQualityForBackstagePasses
-    }
     
-    private var calculateQualityForBackstagePasses: Int {
-        if ItemName.init(rawValue: name) != ItemName.backstagePasses { return quality }
-        if quality >= 50 { return quality }
-        
-        if sellIn < 6 {
-            return quality + 2
-        } else if sellIn < 11 {
-            return quality + 1
-        } else {
-            return quality
-        }
-    }
     
     func updateQualityBeforeSellIn() {
         switch ItemName.init(rawValue: name) {
-        case .backstagePasses,
-             .agedBrie:
-            if quality >= 50 { return }
-            quality =  quality + 1
-            updateQualityForBackstagePasses()
+        case .agedBrie:
+            quality = AgedBrie().getNewQualityPreSellIn(self)
+        case .backstagePasses:
+            quality = BackstagePasses().getNewQualityPreSellIn(self)
         case .sulfuras:
             return
         case .normal:
