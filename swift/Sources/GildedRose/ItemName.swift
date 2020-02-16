@@ -19,7 +19,4 @@ public enum ItemName: String {
         default: self = .normal
         }
     }
-    static func isNormalItem(_ name: String) -> Bool {
-        return ItemName(rawValue: name) == .normal
-    }
 }

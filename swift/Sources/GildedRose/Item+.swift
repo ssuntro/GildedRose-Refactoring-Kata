@@ -44,10 +44,8 @@ extension Item {
             updateQualityForBackstagePasses()
         case .sulfuras:
             return
-        default:
-            if ItemName.isNormalItem(name) {
-                decreaseQuality()
-            }
+        case .normal:
+            decreaseQuality()
         }
     }
     
@@ -63,12 +61,12 @@ extension Item {
         switch ItemName.init(rawValue: name) {
         case .backstagePasses:
             setZeroQuality()
-        case ItemName.agedBrie:
+        case .agedBrie:
             increaseQuality()
-        default:
-            if ItemName.isNormalItem(name) {
-                decreaseQuality()
-            }
+        case .sulfuras:
+            return
+        case .normal:
+            decreaseQuality()
         }
     }
 }
